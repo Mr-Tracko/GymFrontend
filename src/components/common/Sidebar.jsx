@@ -1,68 +1,3 @@
-// import React from 'react';
-// import { Link, useLocation } from 'react-router-dom'; // 1. Import Link and useLocation
-// import Button from '../ui/Button';
-// import { HomeIcon, LogIcon, CalendarIcon, RewardIcon, UserIcon, XIcon } from '../../assets/Icons';
-
-// // 2. Remove selectedTab and setSelectedTab from props
-// const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-//     const location = useLocation(); // 3. Get the current URL location
-
-//     // Helper to determine if a link is active
-//     const isActive = (path) => location.pathname.includes(path);
-
-//     return (
-//         <nav
-//             className={`fixed inset-y-0 left-0 transform ${
-//                 isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-//             } md:relative md:translate-x-0 w-64 bg-gray-900 p-4 transition-transform duration-300 ease-in-out z-50 flex flex-col justify-between border-r-2 border-red-600 shadow-xl`}
-//         >
-//             <div>
-//                 <div className="flex justify-between items-center mb-6">
-//                     <h1 className="text-2xl font-bold text-red-600">FIT AI</h1>
-//                     <Button variant="ghost" onClick={() => setIsSidebarOpen(false)} className="md:hidden p-2">
-//                         <XIcon className="h-6 w-6 text-white"/>
-//                     </Button>
-//                 </div>
-//                 <ul className="space-y-2">
-//                     {/* 4. Replace Buttons with Link components */}
-//                     <li>
-//                         <Link to="/dashboard" className={`w-full flex items-center p-3 rounded-lg font-semibold transition-colors duration-200 ${isActive('/dashboard') ? 'bg-red-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-//                             <HomeIcon />
-//                             <span className="ml-3">Dashboard</span>
-//                         </Link>
-//                     </li>
-//                     <li>
-//                         <Link to="/logs" className={`w-full flex items-center p-3 rounded-lg font-semibold transition-colors duration-200 ${isActive('/logs') ? 'bg-red-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-//                             <LogIcon />
-//                             <span className="ml-3">Previous Logs</span>
-//                         </Link>
-//                     </li>
-//                     <li>
-//                         <Link to="/calendar" className={`w-full flex items-center p-3 rounded-lg font-semibold transition-colors duration-200 ${isActive('/calendar') ? 'bg-red-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-//                             <CalendarIcon />
-//                             <span className="ml-3">Calendar</span>
-//                         </Link>
-//                     </li>
-//                     <li>
-//                         <Link to="/rewards" className={`w-full flex items-center p-3 rounded-lg font-semibold transition-colors duration-200 ${isActive('/rewards') ? 'bg-red-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-//                             <RewardIcon />
-//                             <span className="ml-3">Reward Points</span>
-//                         </Link>
-//                     </li>
-//                 </ul>
-//             </div>
-//             <div>
-//                 <Link to="/account" className={`w-full flex items-center p-3 rounded-lg font-semibold transition-colors duration-200 ${isActive('/account') ? 'bg-red-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-//                     <UserIcon />
-//                     <span className="ml-3">Account</span>
-//                 </Link>
-//             </div>
-//         </nav>
-//     );
-// };
-
-// export default Sidebar;
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
@@ -88,13 +23,6 @@ const ChevronRightIcon = ({ className }) => (
     </svg>
 );
 
-// const UtensilsIcon = ({ className }) => (
-//     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 11-4 0v-6m6 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-//     </svg>
-// );
-
-
 const UtensilsIcon = ({ className }) => (
   <svg
     className={className}
@@ -113,15 +41,14 @@ const UtensilsIcon = ({ className }) => (
   </svg>
 );
 
-
 const DumbbellIcon = ({ className }) => (
   <svg
     className={className}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
-    width="20"   // narrower
-    height="30"  // keep height same
+    width="20"
+    height="30"
   >
     <path
       strokeLinecap="round"
@@ -132,12 +59,6 @@ const DumbbellIcon = ({ className }) => (
   </svg>
 );
 
-
-// const TrendingUpIcon = ({ className }) => (
-//     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-//     </svg>
-// );
 const TrendingUpIcon = ({ className }) => (
   <svg
     className={className}
@@ -156,8 +77,7 @@ const TrendingUpIcon = ({ className }) => (
   </svg>
 );
 
-
-const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, navbarHeight = "80px", sidebarWidth = "280px", dropdownOffset = { left: 280, top: 80 } }) => {
     const location = useLocation();
     const [dietDropdownOpen, setDietDropdownOpen] = useState(false);
     const [workoutDropdownOpen, setWorkoutDropdownOpen] = useState(false);
@@ -179,262 +99,290 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     };
 
     return (
-        <nav
-            className={`fixed inset-y-0 left-0 transform ${
-                isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-            } md:relative md:translate-x-0 w-64 bg-gray-900 p-4 transition-transform duration-300 ease-in-out z-50 flex flex-col justify-between border-r-2 border-red-600 shadow-xl`}
-        >
-            <div>
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl font-bold text-red-600">FIT AI</h1>
-                    <Button variant="ghost" onClick={() => setIsSidebarOpen(false)} className="md:hidden p-2">
-                        <XIcon className="h-6 w-6 text-white"/>
-                    </Button>
+        <>
+            <nav
+                className={`fixed inset-y-0 left-0 pl-5 transform ${
+                    isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                } md:relative md:translate-x-0 w-64 bg-gray-900 p-4 transition-transform duration-300 ease-in-out z-50 flex flex-col justify-between rounded-md border-r-2 border-red-600 shadow-xl`}
+            >
+                <div>
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-2xl font-bold text-red-600">FIT AI</h1>
+                        <Button variant="ghost" onClick={() => setIsSidebarOpen(false)} className="md:hidden p-2">
+                            <XIcon className="h-6 w-6 text-white"/>
+                        </Button>
+                    </div>
+                    
+                    <ul className="space-y-1">
+                        {/* Dashboard */}
+                        <li>
+                            <Link 
+                                to="/dashboard" 
+                                className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isActive('/dashboard') 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <HomeIcon />
+                                <span className="ml-3">Dashboard</span>
+                            </Link>
+                        </li>
+
+                        {/* Diet Plans Dropdown */}
+                        <li className="relative">
+                            <button
+                                onClick={toggleDietDropdown}
+                                className={`w-full flex items-center justify-between p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isDropdownActive(['/diet', '/generate-diet', '/ask-meal', '/diet-history', '/diet-summary', '/latest-diet']) 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <div className="flex items-center">
+                                    <UtensilsIcon />
+                                    <span className="ml-3">Diet Plans</span>
+                                </div>
+                                {dietDropdownOpen ? (
+                                    <ChevronDownIcon className="h-4 w-4" />
+                                ) : (
+                                    <ChevronRightIcon className="h-4 w-4" />
+                                )}
+                            </button>
+                        </li>
+
+                        {/* Workout Plans Dropdown */}
+                        <li className="relative">
+                            <button
+                                onClick={toggleWorkoutDropdown}
+                                className={`w-full flex items-center justify-between p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isDropdownActive(['/workout', '/new-workout', '/log-workout', '/workout-history']) 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <div className="flex items-center">
+                                    <DumbbellIcon />
+                                    <span className="ml-3">Workout Plans</span>
+                                </div>
+                                {workoutDropdownOpen ? (
+                                    <ChevronDownIcon className="h-4 w-4" />
+                                ) : (
+                                    <ChevronRightIcon className="h-4 w-4" />
+                                )}
+                            </button>
+                        </li>
+
+                        {/* Progress Tracker */}
+                        <li>
+                            <Link 
+                                to="/progress" 
+                                className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isActive('/progress') 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <TrendingUpIcon />
+                                <span className="ml-2">Progress Tracker</span>
+                            </Link>
+                        </li>
+
+                        {/* Previous Logs */}
+                        <li>
+                            <Link 
+                                to="/logs" 
+                                className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isActive('/logs') 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <LogIcon />
+                                <span className="ml-3">Previous Logs</span>
+                            </Link>
+                        </li>
+
+                        {/* Calendar */}
+                        <li>
+                            <Link 
+                                to="/calendar" 
+                                className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isActive('/calendar') 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <CalendarIcon />
+                                <span className="ml-3">Calendar</span>
+                            </Link>
+                        </li>
+
+                        {/* Rewards */}
+                        <li>
+                            <Link 
+                                to="/rewards" 
+                                className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                                    isActive('/rewards') 
+                                        ? 'bg-red-600 text-white shadow-lg' 
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                }`}
+                            >
+                                <RewardIcon />
+                                <span className="ml-3">Reward Points</span>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
-                
-                <ul className="space-y-1">
-                    {/* Dashboard */}
-                    <li>
-                        <Link 
-                            to="/dashboard" 
-                            className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isActive('/dashboard') 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <HomeIcon />
-                            <span className="ml-3">Dashboard</span>
-                        </Link>
-                    </li>
 
-                    {/* Diet Plans Dropdown */}
-                    <li>
-                        <button
-                            onClick={toggleDietDropdown}
-                            className={`w-full flex items-center justify-between p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isDropdownActive(['/diet', '/generate-diet', '/ask-meal', '/diet-history', '/diet-summary', '/latest-diet']) 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <div className="flex items-center">
-                                <UtensilsIcon />
-                                <span className="ml-3">Diet Plans</span>
-                            </div>
-                            {dietDropdownOpen ? (
-                                <ChevronDownIcon className="h-4 w-4" />
-                            ) : (
-                                <ChevronRightIcon className="h-4 w-4" />
-                            )}
-                        </button>
-                        
-                        {dietDropdownOpen && (
-                            <ul className="mt-2 ml-6 space-y-1 border-l-2 border-gray-700 pl-4">
-                                <li>
-                                    <Link 
-                                        to="/generate-diet" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/generate-diet') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Generate a Diet Plan
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/ask-meal" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/ask-meal') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Ask a Meal
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/diet-history" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/diet-history') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Diet History
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/diet-summary" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/diet-summary') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Diet Summary
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/latest-diet" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/latest-diet') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Latest Diet Plan
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
-                    </li>
+                {/* Account section at bottom */}
+                <div className="border-t border-gray-700 pt-4">
+                    <Link 
+                        to="/account" 
+                        className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
+                            isActive('/account') 
+                                ? 'bg-red-600 text-white shadow-lg' 
+                                : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                        }`}
+                    >
+                        <UserIcon />
+                        <span className="ml-3">Account</span>
+                    </Link>
+                </div>
+            </nav>
 
-                    {/* Workout Plans Dropdown */}
-                    <li>
-                        <button
-                            onClick={toggleWorkoutDropdown}
-                            className={`w-full flex items-center justify-between p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isDropdownActive(['/workout', '/new-workout', '/log-workout', '/workout-history']) 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <div className="flex items-center">
-                                <DumbbellIcon />
-                                <span className="ml-3">Workout Plans</span>
-                            </div>
-                            {workoutDropdownOpen ? (
-                                <ChevronDownIcon className="h-4 w-4" />
-                            ) : (
-                                <ChevronRightIcon className="h-4 w-4" />
-                            )}
-                        </button>
-                        
-                        {workoutDropdownOpen && (
-                            <ul className="mt-2 ml-6 space-y-1 border-l-2 border-gray-700 pl-4">
-                                <li>
-                                    <Link 
-                                        to="/new-workout" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/new-workout') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        New Workout Plan
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/log-workout" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/log-workout') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Currnet Workout plan
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link 
-                                        to="/workout-history" 
-                                        className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                                            isActive('/workout-history') 
-                                                ? 'bg-red-500 text-white' 
-                                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                                        }`}
-                                    >
-                                        Workout History
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
-                    </li>
-
-                    {/* Progress Tracker */}
-                    <li>
-                        <Link 
-                            to="/progress" 
-                            className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isActive('/progress') 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <TrendingUpIcon />
-                            <span className="ml-2">Progress Tracker</span>
-                        </Link>
-                    </li>
-
-                    {/* Previous Logs */}
-                    <li>
-                        <Link 
-                            to="/logs" 
-                            className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isActive('/logs') 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <LogIcon />
-                            <span className="ml-3">Previous Logs</span>
-                        </Link>
-                    </li>
-
-                    {/* Calendar */}
-                    <li>
-                        <Link 
-                            to="/calendar" 
-                            className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isActive('/calendar') 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <CalendarIcon />
-                            <span className="ml-3">Calendar</span>
-                        </Link>
-                    </li>
-
-                    {/* Rewards */}
-                    <li>
-                        <Link 
-                            to="/rewards" 
-                            className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                                isActive('/rewards') 
-                                    ? 'bg-red-600 text-white shadow-lg' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                            }`}
-                        >
-                            <RewardIcon />
-                            <span className="ml-3">Reward Points</span>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-
-            {/* Account section at bottom */}
-            <div className="border-t border-gray-700 pt-4">
-                <Link 
-                    to="/account" 
-                    className={`w-full flex items-center p-3 rounded-lg font-semibold transition-all duration-200 ${
-                        isActive('/account') 
-                            ? 'bg-red-600 text-white shadow-lg' 
-                            : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                    }`}
+            {/* Diet Dropdown - Positioned as overlay */}
+            {dietDropdownOpen && (
+                <div 
+                    className="fixed bg-gray-800 rounded-lg shadow-xl border border-gray-600 z-[60] min-w-[250px]"
+                    style={{ 
+                        left: `${dropdownOffset.left}px`, 
+                        top: `${dropdownOffset.top + 110}px` // Adjust based on diet item position
+                    }}
                 >
-                    <UserIcon />
-                    <span className="ml-3">Account</span>
-                </Link>
-            </div>
-        </nav>
+                    <ul className="p-2 space-y-1">
+                        <li>
+                            <Link 
+                                to="/generate-diet" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/generate-diet') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setDietDropdownOpen(false)}
+                            >
+                                Generate a Diet Plan
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/ask-meal" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/ask-meal') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setDietDropdownOpen(false)}
+                            >
+                                Ask a Meal
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/diet-history" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/diet-history') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setDietDropdownOpen(false)}
+                            >
+                                Diet History
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/diet-summary" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/diet-summary') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setDietDropdownOpen(false)}
+                            >
+                                Diet Summary
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/latest-diet" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/latest-diet') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setDietDropdownOpen(false)}
+                            >
+                                Latest Diet Plan
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
+
+            {/* Workout Dropdown - Positioned as overlay */}
+            {workoutDropdownOpen && (
+                <div 
+                    className="fixed bg-gray-800 rounded-lg shadow-xl border border-gray-600 z-[60] min-w-[250px]"
+                    style={{ 
+                        left: `${dropdownOffset.left}px`, 
+                        top: `${dropdownOffset.top + 170}px` // Adjust based on workout item position
+                    }}
+                >
+                    <ul className="p-2 space-y-1">
+                        <li>
+                            <Link 
+                                to="/new-workout" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/new-workout') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setWorkoutDropdownOpen(false)}
+                            >
+                                New Workout Plan
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/log-workout" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/log-workout') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setWorkoutDropdownOpen(false)}
+                            >
+                                Current Workout Plan
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to="/workout-history" 
+                                className={`block p-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                                    isActive('/workout-history') 
+                                        ? 'bg-red-500 text-white' 
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                }`}
+                                onClick={() => setWorkoutDropdownOpen(false)}
+                            >
+                                Workout History
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
+        </>
     );
 };
 
