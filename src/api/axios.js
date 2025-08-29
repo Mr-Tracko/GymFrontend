@@ -14,7 +14,7 @@
 import axios from 'axios';
 
 // Base URL for your backend server
-const BASE_URL = 'https://gymbackend-kbai.onrender.com/'; // Fixed: Using port 5000
+const BASE_URL = 'https://gymbackend-1-f1ep.onrender.com/'; // Fixed: Using port 5000
 
 // Default axios instance
 export default axios.create({
