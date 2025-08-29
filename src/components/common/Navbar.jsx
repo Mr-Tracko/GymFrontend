@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black text-white shadow-md z-50">
+    <nav className="bg-black text-white shadow-md z-100">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Left Section - Logo and Brand */}
@@ -97,7 +97,7 @@ const Navbar = () => {
           {/* Right Section - Desktop Login Button */}
           <button className="hidden md:flex items-center space-x-2 bg-red-700 hover:bg-red-800 text-white hover:text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 border border-red-700 hover:border-red-800">
             {/* <LogIn className="w-5 h-5" /> */}
-            <span>Login/Sign-in</span>
+            <span>LogOut</span>
           </button>
 
           {/* Mobile Menu Button */}
@@ -197,7 +197,7 @@ const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <LogIn className="w-5 h-5" />
-                  <span>Login/Sign-in</span>
+                  <span>LogOut</span>
                 </button>
               </li>
             </ul>
