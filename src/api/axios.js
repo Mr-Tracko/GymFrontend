@@ -14,7 +14,7 @@
 import axios from 'axios';
 
 // Base URL for your backend server
-const BASE_URL = 'http://localhost:8001'; // Fixed: Using port 5000
+const BASE_URL = 'https://gym-backend-blush.vercel.app/'; // Fixed: Using port 5000
 
 // Default axios instance
 export default axios.create({
