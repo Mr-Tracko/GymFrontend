@@ -1,20 +1,8 @@
-// import axios from 'axios';
-// const BASE_URL = 'http://localhost:5000';
-
-// export default axios.create({
-//     baseURL: BASE_URL
-// });
-
-// export const axiosPrivate = axios.create({
-//     baseURL: BASE_URL,
-//     headers: {'Content-Type': 'application/json'},
-//     withCredentials: true
-// });
-
 import axios from 'axios';
 
 // Base URL for your backend server
-const BASE_URL = 'https://gymbackend-1-f1ep.onrender.com/' || 'http://localhost:5000'; // Fixed: Using port 5000
+const BASE_URL = 'https://gymbackend-2.onrender.com';
+// const BASE_URL = 'https://gymbackend-2.onrender.com' || 'http://localhost:5000';
 
 // Default axios instance
 export default axios.create({
